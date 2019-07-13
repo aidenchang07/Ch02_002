@@ -1,5 +1,17 @@
 <resources>
     <string name="app_name">Ch02_002</string>
+    <!-- 結果面板 -->
+    <string name="answer">0</string>
+
+    <!-- 加減乘除&刪除&等號 -->
+    <string name="button_add">+</string>
+    <string name="button_minus">-</string>
+    <string name="button_times">x</string>
+    <string name="button_division">/</string>
+    <string name="button_delete">DEL</string>
+    <string name="button_equals">=</string>
+
+    <!-- 數字 -->
     <string name="button_zero">0</string>
     <string name="button_one">1</string>
     <string name="button_two">2</string>
@@ -10,4 +22,6 @@
     <string name="button_seven">7</string>
     <string name="button_eight">8</string>
     <string name="button_nine">9</string>
+    <string name="button_point">.</string>
+
 </resources>
