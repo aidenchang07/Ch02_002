@@ -3,12 +3,13 @@
     <!-- 結果面板 -->
     <string name="answer">0</string>
 
-    <!-- 加減乘除&刪除&等號 -->
+    <!-- 加減乘除&刪除&等號&清除 -->
     <string name="button_add">+</string>
     <string name="button_minus">-</string>
     <string name="button_times">x</string>
     <string name="button_division">/</string>
     <string name="button_delete">DEL</string>
+    <string name="button_clear">CLR</string>
     <string name="button_equals">=</string>
 
     <!-- 數字 -->
