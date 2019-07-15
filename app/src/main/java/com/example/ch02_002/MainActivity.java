@@ -9,6 +9,8 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.math.BigDecimal;
+
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     /**
@@ -33,13 +35,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     int pointFlag = 0;
 
     //保存左邊的數
-    double previousNum = 0;
+    BigDecimal previousBD;
 
     //保存右邊的數
-    double lastNum = 0;
+    BigDecimal lastBD;
 
     //保存計算後的數
-    double resultNum = 0;
+    BigDecimal resultBD;
+
+    //小數點精確位數
+    int scale = 20;
 
     //字串暫存器
     StringBuilder stringBuilder = new StringBuilder();
@@ -100,9 +105,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
          * 加減乘除&刪除&等號&清除&小數點宣告
          */
         button_add = findViewById(R.id.button_add);
-        button_minus = findViewById(R.id.button_minus);
-        button_times = findViewById(R.id.button_times);
-        button_division = findViewById(R.id.button_division);
+        button_minus = findViewById(R.id.button_subtract);
+        button_times = findViewById(R.id.button_multiply);
+        button_division = findViewById(R.id.button_divide);
         button_delete = findViewById(R.id.button_delete);
         button_clear = findViewById(R.id.button_clear);
         button_equals = findViewById(R.id.button_equals);
@@ -289,10 +294,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                             //開啟使用小數點
                             pointFlag = 0;
                             try {
-                                previousNum = Double.parseDouble(stringBuilder.toString());
+                                previousBD = new BigDecimal(stringBuilder.toString());
                             } catch (Exception e) {
                                 //任何例外都將數字設為0
-                                previousNum = 0;
+                                previousBD = new BigDecimal(BigDecimal.ZERO.toString());
                             }
                             stringBuilderTV = stringBuilder;
                             stringBuilderTV.append(getResources().getText(R.string.add));
@@ -313,7 +318,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 }
                 Log.i("Button","button_add");
                 break;
-            case R.id.button_minus:
+            case R.id.button_subtract:
                 /**
                  * 如果還未計算出結果(resultFlag==0)，才可以使用按鍵;
                  * 如果已計算出結果(resultFlag==1)，則禁止使用任何按鍵;
@@ -330,13 +335,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                             //開啟使用小數點
                             pointFlag = 0;
                             try {
-                                previousNum = Double.parseDouble(stringBuilder.toString());
+                                previousBD = new BigDecimal(stringBuilder.toString());
                             } catch (Exception e) {
                                 //任何例外都將數字設為0
-                                previousNum = 0;
+                                previousBD = new BigDecimal(BigDecimal.ZERO.toString());
                             }
                             stringBuilderTV = stringBuilder;
-                            stringBuilderTV.append(getResources().getText(R.string.minus));
+                            stringBuilderTV.append(getResources().getText(R.string.subtract));
                             arithmeticTextView.setText(stringBuilderTV);
                             stringBuilder = new StringBuilder();
                         }
@@ -346,14 +351,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                             statement = 2;
                             //刪除最後一位字元(運算符號)
                             stringBuilderTV.delete(stringBuilderTV.length() - 1, stringBuilderTV.length());
-                            stringBuilderTV.append(getResources().getText(R.string.minus));
+                            stringBuilderTV.append(getResources().getText(R.string.subtract));
                             arithmeticTextView.setText(stringBuilderTV);
                         }
                     }
                 }
                 Log.i("Button","button_minus");
                 break;
-            case R.id.button_times:
+            case R.id.button_multiply:
                 /**
                  * 如果還未計算出結果(resultFlag==0)，才可以使用按鍵;
                  * 如果已計算出結果(resultFlag==1)，則禁止使用任何按鍵;
@@ -370,13 +375,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                             //開啟使用小數點
                             pointFlag = 0;
                             try {
-                                previousNum = Double.parseDouble(stringBuilder.toString());
+                                previousBD = new BigDecimal(stringBuilder.toString());
                             } catch (Exception e) {
                                 //任何例外都將數字設為0
-                                previousNum = 0;
+                                previousBD = new BigDecimal(BigDecimal.ZERO.toString());
                             }
                             stringBuilderTV = stringBuilder;
-                            stringBuilderTV.append(getResources().getText(R.string.times));
+                            stringBuilderTV.append(getResources().getText(R.string.multiply));
                             arithmeticTextView.setText(stringBuilderTV);
                             stringBuilder = new StringBuilder();
                         }
@@ -386,14 +391,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                             statement = 3;
                             //刪除最後一位字元(運算符號)
                             stringBuilderTV.delete(stringBuilderTV.length() - 1, stringBuilderTV.length());
-                            stringBuilderTV.append(getResources().getText(R.string.times));
+                            stringBuilderTV.append(getResources().getText(R.string.multiply));
                             arithmeticTextView.setText(stringBuilderTV);
                         }
                     }
                 }
                 Log.i("Button","button_times");
                 break;
-            case R.id.button_division:
+            case R.id.button_divide:
                 /**
                  * 如果還未計算出結果(resultFlag==0)，才可以使用按鍵;
                  * 如果已計算出結果(resultFlag==1)，則禁止使用任何按鍵;
@@ -410,13 +415,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                             //開啟使用小數點
                             pointFlag = 0;
                             try {
-                                previousNum = Double.parseDouble(stringBuilder.toString());
+                                previousBD = new BigDecimal(stringBuilder.toString());
                             } catch (Exception e) {
                                 //任何例外都將數字設為0
-                                previousNum = 0;
+                                previousBD = new BigDecimal(BigDecimal.ZERO.toString());
                             }
                             stringBuilderTV = stringBuilder;
-                            stringBuilderTV.append(getResources().getText(R.string.division));
+                            stringBuilderTV.append(getResources().getText(R.string.divide));
                             arithmeticTextView.setText(stringBuilderTV);
                             stringBuilder = new StringBuilder();
                         }
@@ -426,7 +431,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                             statement = 4;
                             //刪除最後一位字元(運算符號)
                             stringBuilderTV.delete(stringBuilderTV.length() - 1, stringBuilderTV.length());
-                            stringBuilderTV.append(getResources().getText(R.string.division));
+                            stringBuilderTV.append(getResources().getText(R.string.divide));
                             arithmeticTextView.setText(stringBuilderTV);
                         }
                     }
@@ -458,9 +463,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 statement = 0;
                 resultFlag = 0;
                 pointFlag = 0;
-                previousNum = 0;
-                lastNum = 0;
-                resultNum = 0;
+                previousBD = new BigDecimal(BigDecimal.ZERO.toString());
+                lastBD = new BigDecimal(BigDecimal.ZERO.toString());
+                resultBD = new BigDecimal(BigDecimal.ZERO.toString());
                 arithmeticTextView.setText(R.string.empty);
                 resultTextView.setText(R.string.empty);
                 stringBuilder = new StringBuilder();
@@ -476,33 +481,48 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     //開啟禁止使用任何按鍵
                     resultFlag = 1;
                     try {
-                        lastNum = Double.parseDouble(stringBuilder.toString());
+                        lastBD = new BigDecimal(stringBuilder.toString());
                     } catch (Exception e) {
                         //任何例外都將數字設為0
-                        lastNum = 0;
+                        lastBD = new BigDecimal(getResources().getText(R.string.zero).toString());
                     }
-                    if (statement == 4 && lastNum == 0) {
+                    /**
+                     * 請使用compareTo!!!
+                     * equals(), 有比較scale位數
+                     * new BigDecimal("0").equals(BigDecimal.ZERO) // true
+                     * new BigDecimal("0.00").equals(BigDecimal.ZERO) // false!
+                     *
+                     * compareTo(), 沒比較scale位數
+                     * new BigDecimal("0").compareTo(BigDecimal.ZERO) == 0 // true
+                     * new BigDecimal("0.00").compareTo(BigDecimal.ZERO) == 0 // true
+                     */
+                    if (statement == 4 && lastBD.compareTo(BigDecimal.ZERO) == 0) {
                         ////顯示結果(除數不得為零)
                         resultTextView.setText(R.string.not_zero);
                     } else {
                         if (statement == 1) {
                             //加法
-                            resultNum = previousNum + lastNum;
+                            resultBD = previousBD.add(lastBD);
                         } else if (statement == 2) {
                             //減法
-                            resultNum = previousNum - lastNum;
+                            resultBD = previousBD.subtract(lastBD);
                         } else if (statement == 3) {
                             //乘法
-                            resultNum = previousNum * lastNum;
+                            resultBD = previousBD.multiply(lastBD);
                         } else if (statement == 4) {
                             //除法
-                            resultNum = previousNum / lastNum;
+                            //ROUND_HALF_UP四捨五入
+                            resultBD = previousBD.divide(lastBD, scale, BigDecimal.ROUND_HALF_UP);
                         } else {
                             //無任何運算式
-                            resultNum = previousNum + lastNum;
+                            resultBD = lastBD;
                         }
-                        //顯示結果
-                        resultTextView.setText(String.valueOf(resultNum));
+                        /**
+                         * 顯示結果;
+                         * stripTrailingZeros: 去尾數0
+                         * toPlainString: 轉String
+                         */
+                        resultTextView.setText(resultBD.stripTrailingZeros().toPlainString());
                     }
                 }
                 Log.i("Button","button_equals");

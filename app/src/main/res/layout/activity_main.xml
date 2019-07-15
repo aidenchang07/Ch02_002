@@ -187,46 +187,46 @@
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
         android:text="@string/button_delete"
-        app:layout_constraintBottom_toTopOf="@+id/button_division"
+        app:layout_constraintBottom_toTopOf="@+id/button_divide"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/guideline"
         app:layout_constraintTop_toBottomOf="@+id/button_clear" />
 
     <Button
-        android:id="@+id/button_division"
+        android:id="@+id/button_divide"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
-        android:text="@string/division"
-        app:layout_constraintBottom_toTopOf="@+id/button_times"
+        android:text="@string/divide"
+        app:layout_constraintBottom_toTopOf="@+id/button_multiply"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/guideline"
         app:layout_constraintTop_toBottomOf="@+id/button_delete" />
 
     <Button
-        android:id="@+id/button_times"
+        android:id="@+id/button_multiply"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
-        android:text="@string/times"
-        app:layout_constraintBottom_toTopOf="@+id/button_minus"
+        android:text="@string/multiply"
+        app:layout_constraintBottom_toTopOf="@+id/button_subtract"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/guideline"
-        app:layout_constraintTop_toBottomOf="@+id/button_division" />
+        app:layout_constraintTop_toBottomOf="@+id/button_divide" />
 
     <Button
-        android:id="@+id/button_minus"
+        android:id="@+id/button_subtract"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
-        android:text="@string/minus"
+        android:text="@string/subtract"
         app:layout_constraintBottom_toTopOf="@+id/button_add"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/guideline"
-        app:layout_constraintTop_toBottomOf="@+id/button_times" />
+        app:layout_constraintTop_toBottomOf="@+id/button_multiply" />
 
     <Button
         android:id="@+id/button_add"
@@ -239,7 +239,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/guideline"
-        app:layout_constraintTop_toBottomOf="@+id/button_minus" />
+        app:layout_constraintTop_toBottomOf="@+id/button_subtract" />
 
     <Button
         android:id="@+id/button_clear"
