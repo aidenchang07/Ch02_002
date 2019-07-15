@@ -1,8 +1,6 @@
 <resources>
     <string name="app_name">Ch02_002</string>
-    <!-- 結果面板 -->
-    <string name="answer"></string>
-
+    
     <!-- 加減乘除&刪除&等號&清除&小數點 -->
     <string name="add">+</string>
     <string name="minus">-</string>
@@ -27,5 +25,9 @@
 
     <!-- 空字串 -->
     <string name="empty">""</string>
+    
+    <!-- 其他 -->
+    <string name="not_zero">除數不得為零</string>
+    <string name="DEL_CLR">請使用CLR清除</string>
 
 </resources>

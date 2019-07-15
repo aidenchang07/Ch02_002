@@ -12,20 +12,44 @@ import android.widget.Toast;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     /**
-     * 加: 1
-     * 減: 2
-     * 乘: 3
-     * 除: 4
+     * 尚未有計算符號: statement=0
+     * 加: statement=1
+     * 減: statement=2
+     * 乘: statement=3
+     * 除: statement=4
      */
     int statement = 0;
-    int resultFlag = 0;
-    double previousNum = 0;
-    double lastNum = 0;
-    StringBuilder stringBuilder = new StringBuilder();
 
+    /**
+     * 尚未算出結果: resultFlag=0
+     * 已算出結果: resultFlag=1
+     */
+    int resultFlag = 0;
+
+    /**
+     * 尚未點擊小數點: pointFlag=0
+     * 已點擊小數點: pointFlag=1
+     */
+    int pointFlag = 0;
+
+    //保存左邊的數
+    double previousNum = 0;
+
+    //保存右邊的數
+    double lastNum = 0;
+
+    //保存計算後的數
+    double resultNum = 0;
+
+    //字串暫存器
+    StringBuilder stringBuilder = new StringBuilder();
+    StringBuilder stringBuilderTV = new StringBuilder();
+
+    //TextView宣告
     private TextView arithmeticTextView,
             resultTextView;
 
+    //Button宣告
     private Button button_zero,
             button_one,
             button_two,
@@ -35,9 +59,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             button_six,
             button_seven,
             button_eight,
-            button_nine;
-
-    private Button button_add,
+            button_nine,
+            button_add,
             button_minus,
             button_times,
             button_division,
@@ -51,11 +74,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //使用func宣告，比較簡潔清楚
         getView();
         setEvent();
 
     }
 
+    //getView宣告都放在一起
     public void getView(){
         /**
          * 數字按鍵宣告
@@ -87,6 +112,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         resultTextView = findViewById(R.id.resultTextView);
     }
 
+    //setEvent事件都放在一起
     public void setEvent() {
         /**
          * 數字按鍵監聽器
@@ -117,296 +143,383 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     @Override
-    protected void onStart() {
-        super.onStart();
-    }
-
-    @Override
     public void onClick(View view) {
+        //取得所有按鍵的ID
         int id = view.getId();
 
         switch (id){
             case R.id.button_zero:
+                /**
+                 * 如果還未計算出結果(resultFlag==0)，才可以使用按鍵;
+                 * 如果已計算出結果(resultFlag==1)，不做任何事情;
+                 */
                 if (resultFlag == 0) {
                     stringBuilder.append(getResources().getText(R.string.zero));
-                    arithmeticTextView.setText(stringBuilder);
-                } else if (resultFlag == 1) {
-                    //沒事
-                } else {
-                    Toast.makeText(this, "button_zero例外狀況(resultFlag)", Toast.LENGTH_SHORT).show();
+                    stringBuilderTV.append(getResources().getText(R.string.zero));
+                    arithmeticTextView.setText(stringBuilderTV);
                 }
                 Log.i("Button","button_zero");
                 break;
             case R.id.button_one:
+                /**
+                 * 如果還未計算出結果(resultFlag==0)，才可以使用按鍵;
+                 * 如果已計算出結果(resultFlag==1)，不做任何事情;
+                 */
                 if (resultFlag == 0) {
                     stringBuilder.append(getResources().getText(R.string.one));
-                    arithmeticTextView.setText(stringBuilder);
-                } else if (resultFlag == 1) {
-                    //沒事
-                } else {
-                    Toast.makeText(this, "button_one例外狀況(resultFlag)", Toast.LENGTH_SHORT).show();
+                    stringBuilderTV.append(getResources().getText(R.string.one));
+                    arithmeticTextView.setText(stringBuilderTV);
                 }
                 Log.i("Button","button_one");
                 break;
             case R.id.button_two:
+                /**
+                 * 如果還未計算出結果(resultFlag==0)，才可以使用按鍵;
+                 * 如果已計算出結果(resultFlag==1)，不做任何事情;
+                 */
                 if (resultFlag == 0) {
                     stringBuilder.append(getResources().getText(R.string.two));
-                    arithmeticTextView.setText(stringBuilder);
-                } else if (resultFlag == 1) {
-                    //沒事
-                } else {
-                    Toast.makeText(this, "button_two例外狀況(resultFlag)", Toast.LENGTH_SHORT).show();
+                    stringBuilderTV.append(getResources().getText(R.string.two));
+                    arithmeticTextView.setText(stringBuilderTV);
                 }
                 Log.i("Button","button_two");
                 break;
             case R.id.button_three:
+                /**
+                 * 如果還未計算出結果(resultFlag==0)，才可以使用按鍵;
+                 * 如果已計算出結果(resultFlag==1)，不做任何事情;
+                 */
                 if (resultFlag == 0) {
                     stringBuilder.append(getResources().getText(R.string.three));
-                    arithmeticTextView.setText(stringBuilder);
-                } else if (resultFlag == 1) {
-                    //沒事
-                } else {
-                    Toast.makeText(this, "button_three例外狀況(resultFlag)", Toast.LENGTH_SHORT).show();
+                    stringBuilderTV.append(getResources().getText(R.string.three));
+                    arithmeticTextView.setText(stringBuilderTV);
                 }
                 Log.i("Button","button_three");
                 break;
             case R.id.button_four:
+                /**
+                 * 如果還未計算出結果(resultFlag==0)，才可以使用按鍵;
+                 * 如果已計算出結果(resultFlag==1)，不做任何事情;
+                 */
                 if (resultFlag == 0) {
                     stringBuilder.append(getResources().getText(R.string.four));
-                    arithmeticTextView.setText(stringBuilder);
-                } else if (resultFlag == 1) {
-                    //沒事
-                } else {
-                    Toast.makeText(this, "button_four例外狀況(resultFlag)", Toast.LENGTH_SHORT).show();
+                    stringBuilderTV.append(getResources().getText(R.string.four));
+                    arithmeticTextView.setText(stringBuilderTV);
                 }
                 Log.i("Button","button_four");
                 break;
             case R.id.button_five:
+                /**
+                 * 如果還未計算出結果(resultFlag==0)，才可以使用按鍵;
+                 * 如果已計算出結果(resultFlag==1)，不做任何事情;
+                 */
                 if (resultFlag == 0) {
                     stringBuilder.append(getResources().getText(R.string.five));
-                    arithmeticTextView.setText(stringBuilder);
-                } else if (resultFlag == 1) {
-                    //沒事
-                } else {
-                    Toast.makeText(this, "button_five例外狀況(resultFlag)", Toast.LENGTH_SHORT).show();
+                    stringBuilderTV.append(getResources().getText(R.string.five));
+                    arithmeticTextView.setText(stringBuilderTV);
                 }
                 Log.i("Button","button_five");
                 break;
             case R.id.button_six:
+                /**
+                 * 如果還未計算出結果(resultFlag==0)，才可以使用按鍵;
+                 * 如果已計算出結果(resultFlag==1)，不做任何事情;
+                 */
                 if (resultFlag == 0) {
                     stringBuilder.append(getResources().getText(R.string.six));
-                    arithmeticTextView.setText(stringBuilder);
-                } else if (resultFlag == 1) {
-                    //沒事
-                } else {
-                    Toast.makeText(this, "button_six例外狀況(resultFlag)", Toast.LENGTH_SHORT).show();
+                    stringBuilderTV.append(getResources().getText(R.string.six));
+                    arithmeticTextView.setText(stringBuilderTV);
                 }
                 Log.i("Button","button_six");
                 break;
             case R.id.button_seven:
+                /**
+                 * 如果還未計算出結果(resultFlag==0)，才可以使用按鍵;
+                 * 如果已計算出結果(resultFlag==1)，不做任何事情;
+                 */
                 if (resultFlag == 0) {
                     stringBuilder.append(getResources().getText(R.string.seven));
-                    arithmeticTextView.setText(stringBuilder);
-                } else if (resultFlag == 1) {
-                    //沒事
-                } else {
-                    Toast.makeText(this, "button_seven例外狀況(resultFlag)", Toast.LENGTH_SHORT).show();
+                    stringBuilderTV.append(getResources().getText(R.string.seven));
+                    arithmeticTextView.setText(stringBuilderTV);
                 }
                 Log.i("Button","button_seven");
                 break;
             case R.id.button_eight:
+                /**
+                 * 如果還未計算出結果(resultFlag==0)，才可以使用按鍵;
+                 * 如果已計算出結果(resultFlag==1)，不做任何事情;
+                 */
                 if (resultFlag == 0) {
                     stringBuilder.append(getResources().getText(R.string.eight));
-                    arithmeticTextView.setText(stringBuilder);
-                } else if (resultFlag == 1) {
-                    //沒事
-                } else {
-                    Toast.makeText(this, "button_eight例外狀況(resultFlag)", Toast.LENGTH_SHORT).show();
+                    stringBuilderTV.append(getResources().getText(R.string.eight));
+                    arithmeticTextView.setText(stringBuilderTV);
                 }
                 Log.i("Button","button_eight");
                 break;
             case R.id.button_nine:
+                /**
+                 * 如果還未計算出結果(resultFlag==0)，才可以使用按鍵;
+                 * 如果已計算出結果(resultFlag==1)，不做任何事情;
+                 */
                 if (resultFlag == 0) {
                     stringBuilder.append(getResources().getText(R.string.nine));
-                    arithmeticTextView.setText(stringBuilder);
-                } else if (resultFlag == 1) {
-                    //沒事
-                } else {
-                    Toast.makeText(this, "button_nine例外狀況(resultFlag)", Toast.LENGTH_SHORT).show();
+                    stringBuilderTV.append(getResources().getText(R.string.nine));
+                    arithmeticTextView.setText(stringBuilderTV);
                 }
                 Log.i("Button","button_nine");
                 break;
 
+                //-----------------------------------------------------------------
 
             case R.id.button_add:
+                /**
+                 * 如果還未計算出結果(resultFlag==0)，才可以使用按鍵;
+                 * 如果已計算出結果(resultFlag==1)，則禁止使用任何按鍵;
+                 */
                 if (resultFlag == 0) {
-                    if (stringBuilder.length() > 0 && statement == 0) {
-                        previousNum = Double.parseDouble(stringBuilder.toString());
-                        arithmeticTextView.setText(R.string.empty);
-                        stringBuilder = new StringBuilder();
-                        statement = 1;
-                    } else if (stringBuilder.length() == 0 || statement > 0) {
-                        //沒事
-                    } else {
-                        Toast.makeText(this, "例外狀況", Toast.LENGTH_SHORT).show();
+                    /**
+                     * 如果還未輸入運算符號(statement == 0)，即可新增運算符號;
+                     * 如果已設定運算符號且非加號(statement > 0 && statement != 1)，即可更改運算符號;
+                     */
+                    if (statement == 0) {
+                        //有輸入才能使用運算符號
+                        if (stringBuilder.length() > 0) {
+                            //設定為加法
+                            statement = 1;
+                            //開啟使用小數點
+                            pointFlag = 0;
+                            try {
+                                previousNum = Double.parseDouble(stringBuilder.toString());
+                            } catch (Exception e) {
+                                //任何例外都將數字設為0
+                                previousNum = 0;
+                            }
+                            stringBuilderTV = stringBuilder;
+                            stringBuilderTV.append(getResources().getText(R.string.add));
+                            arithmeticTextView.setText(stringBuilderTV);
+                            //清空左邊的數
+                            stringBuilder = new StringBuilder();
+                        }
+                    } else if (statement > 0 && statement != 1) {
+                        //還未輸入下一個數字前，可更改運算符號
+                        if (stringBuilder.length() == 0) {
+                            statement = 1;
+                            //刪除最後一位字元(運算符號)
+                            stringBuilderTV.delete(stringBuilderTV.length() - 1, stringBuilderTV.length());
+                            stringBuilderTV.append(getResources().getText(R.string.add));
+                            arithmeticTextView.setText(stringBuilderTV);
+                        }
                     }
-                } else if (resultFlag == 1) {
-                    //沒事
-                } else {
-                    Toast.makeText(this, "button_add例外狀況(resultFlag)", Toast.LENGTH_SHORT).show();
                 }
-                //測試輸入的數值是否已存入previousNum
-                //Toast.makeText(this, String.valueOf(previousNum), Toast.LENGTH_SHORT).show();
                 Log.i("Button","button_add");
                 break;
             case R.id.button_minus:
+                /**
+                 * 如果還未計算出結果(resultFlag==0)，才可以使用按鍵;
+                 * 如果已計算出結果(resultFlag==1)，則禁止使用任何按鍵;
+                 */
                 if (resultFlag == 0) {
-                    if (stringBuilder.length() > 0 && statement == 0) {
-                        previousNum = Double.parseDouble(arithmeticTextView.getText().toString());
-                        arithmeticTextView.setText(R.string.empty);
-                        stringBuilder = new StringBuilder();
-                        statement = 2;
-                    } else if (stringBuilder.length() == 0 || statement > 0) {
-                        //沒事
-                    } else {
-                        Toast.makeText(this, "例外狀況", Toast.LENGTH_SHORT).show();
+                    /**
+                     * 如果還未輸入運算符號(statement == 0)，即可新增運算符號;
+                     * 如果已設定運算符號且非減號(statement > 0 && statement != 2)，即可更改運算符號;
+                     */
+                    if (statement == 0) {
+                        if (stringBuilder.length() > 0) {
+                            //設定為減法
+                            statement = 2;
+                            //開啟使用小數點
+                            pointFlag = 0;
+                            try {
+                                previousNum = Double.parseDouble(stringBuilder.toString());
+                            } catch (Exception e) {
+                                //任何例外都將數字設為0
+                                previousNum = 0;
+                            }
+                            stringBuilderTV = stringBuilder;
+                            stringBuilderTV.append(getResources().getText(R.string.minus));
+                            arithmeticTextView.setText(stringBuilderTV);
+                            stringBuilder = new StringBuilder();
+                        }
+                    } else if (statement > 0 && statement != 2) {
+                        //還未輸入下一個數字前，可更改運算符號
+                        if (stringBuilder.length() == 0) {
+                            statement = 2;
+                            //刪除最後一位字元(運算符號)
+                            stringBuilderTV.delete(stringBuilderTV.length() - 1, stringBuilderTV.length());
+                            stringBuilderTV.append(getResources().getText(R.string.minus));
+                            arithmeticTextView.setText(stringBuilderTV);
+                        }
                     }
-                } else if (resultFlag == 1) {
-                    //沒事
-                } else {
-                    Toast.makeText(this, "button_minus例外狀況(resultFlag)", Toast.LENGTH_SHORT).show();
                 }
                 Log.i("Button","button_minus");
                 break;
             case R.id.button_times:
+                /**
+                 * 如果還未計算出結果(resultFlag==0)，才可以使用按鍵;
+                 * 如果已計算出結果(resultFlag==1)，則禁止使用任何按鍵;
+                 */
                 if (resultFlag == 0) {
-                    if (stringBuilder.length() > 0 && statement == 0) {
-                        previousNum = Double.parseDouble(arithmeticTextView.getText().toString());
-                        arithmeticTextView.setText(R.string.empty);
-                        stringBuilder = new StringBuilder();
-                        statement = 3;
-                    } else if (stringBuilder.length() == 0 || statement > 0) {
-                        //沒事
-                    } else {
-                        Toast.makeText(this, "例外狀況", Toast.LENGTH_SHORT).show();
+                    /**
+                     * 如果還未輸入運算符號(statement == 0)，即可新增運算符號;
+                     * 如果已設定運算符號且非乘號(statement > 0 && statement != 3)，即可更改運算符號;
+                     */
+                    if (statement == 0) {
+                        if (stringBuilder.length() > 0) {
+                            //設定為乘法
+                            statement = 3;
+                            //開啟使用小數點
+                            pointFlag = 0;
+                            try {
+                                previousNum = Double.parseDouble(stringBuilder.toString());
+                            } catch (Exception e) {
+                                //任何例外都將數字設為0
+                                previousNum = 0;
+                            }
+                            stringBuilderTV = stringBuilder;
+                            stringBuilderTV.append(getResources().getText(R.string.times));
+                            arithmeticTextView.setText(stringBuilderTV);
+                            stringBuilder = new StringBuilder();
+                        }
+                    } else if (statement > 0 && statement != 3) {
+                        //還未輸入下一個數字前，可更改運算符號
+                        if (stringBuilder.length() == 0) {
+                            statement = 3;
+                            //刪除最後一位字元(運算符號)
+                            stringBuilderTV.delete(stringBuilderTV.length() - 1, stringBuilderTV.length());
+                            stringBuilderTV.append(getResources().getText(R.string.times));
+                            arithmeticTextView.setText(stringBuilderTV);
+                        }
                     }
-                } else if (resultFlag == 1) {
-                    //沒事
-                } else {
-                    Toast.makeText(this, "button_times例外狀況(resultFlag)", Toast.LENGTH_SHORT).show();
                 }
                 Log.i("Button","button_times");
                 break;
             case R.id.button_division:
+                /**
+                 * 如果還未計算出結果(resultFlag==0)，才可以使用按鍵;
+                 * 如果已計算出結果(resultFlag==1)，則禁止使用任何按鍵;
+                 */
                 if (resultFlag == 0) {
-                    if (stringBuilder.length() > 0 && statement == 0) {
-                        previousNum = Double.parseDouble(arithmeticTextView.getText().toString());
-                        arithmeticTextView.setText(R.string.empty);
-                        stringBuilder = new StringBuilder();
-                        statement = 4;
-                    } else if (stringBuilder.length() == 0 || statement > 0) {
-                        //沒事
-                    } else {
-                        Toast.makeText(this, "button_division例外狀況(previousNum && statement)", Toast.LENGTH_SHORT).show();
+                    /**
+                     * 如果還未輸入運算符號(statement == 0)，即可新增運算符號;
+                     * 如果已設定運算符號且非除號(statement > 0 && statement != 4)，即可更改運算符號;
+                     */
+                    if (statement == 0) {
+                        if (stringBuilder.length() > 0) {
+                            //設定為除法
+                            statement = 4;
+                            //開啟使用小數點
+                            pointFlag = 0;
+                            try {
+                                previousNum = Double.parseDouble(stringBuilder.toString());
+                            } catch (Exception e) {
+                                //任何例外都將數字設為0
+                                previousNum = 0;
+                            }
+                            stringBuilderTV = stringBuilder;
+                            stringBuilderTV.append(getResources().getText(R.string.division));
+                            arithmeticTextView.setText(stringBuilderTV);
+                            stringBuilder = new StringBuilder();
+                        }
+                    } else if (statement > 0 && statement != 4) {
+                        //還未輸入下一個數字前，可更改運算符號
+                        if (stringBuilder.length() == 0) {
+                            statement = 4;
+                            //刪除最後一位字元(運算符號)
+                            stringBuilderTV.delete(stringBuilderTV.length() - 1, stringBuilderTV.length());
+                            stringBuilderTV.append(getResources().getText(R.string.division));
+                            arithmeticTextView.setText(stringBuilderTV);
+                        }
                     }
-                } else if (resultFlag == 1) {
-                    //沒事
-                } else {
-                    Toast.makeText(this, "button_division例外狀況(resultFlag)", Toast.LENGTH_SHORT).show();
                 }
                 Log.i("Button","button_division");
                 break;
             case R.id.button_delete:
+                /**
+                 * 如果還未計算出結果(resultFlag==0)，才可以使用按鍵;
+                 * 如果已計算出結果(resultFlag==1)，則提示使用CLR清除資料;
+                 */
                 if (resultFlag == 0) {
-                    if (statement == 0) {
-                        if (stringBuilder.length() >= 1) {
-                            /**
-                             * 長度超過1繼續刪除
-                             */
-                            stringBuilder.delete(stringBuilder.length() - 1, stringBuilder.length());
-                            arithmeticTextView.setText(stringBuilder);
-                        } else if (stringBuilder.length() == 0) {
-                            /**
-                             * 長度等於0就再次設定長度為0
-                             */
-                            stringBuilder.setLength(0);
-                            arithmeticTextView.setText(stringBuilder);
-                        } else {
-                            Toast.makeText(this, "button_delete例外狀況(stringBuilder.length)", Toast.LENGTH_SHORT).show();
+                    if (stringBuilder.length() > 0) {
+                        if (stringBuilder.substring(stringBuilder.length() - 1, stringBuilder.length()).equals(getResources().getText(R.string.point))) {
+                            //開啟使用小數點
+                            pointFlag = 0;
                         }
-                    } else if (statement > 0) {
-                        //沒事
-                    } else {
-                        Toast.makeText(this, "button_delete例外狀況(statement)", Toast.LENGTH_SHORT).show();
+                        //刪除最後一位字元(數字)
+                        stringBuilder.delete(stringBuilder.length() - 1, stringBuilder.length());
+                        stringBuilderTV.delete(stringBuilderTV.length() - 1, stringBuilderTV.length());
+                        arithmeticTextView.setText(stringBuilderTV);
                     }
                 } else if (resultFlag == 1) {
-                    Toast.makeText(this, "請使用CLR清除", Toast.LENGTH_SHORT).show();
-                } else {
-                    Toast.makeText(this, "button_delete例外狀況(resultFlag)", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, R.string.DEL_CLR, Toast.LENGTH_SHORT).show();
                 }
                 Log.i("Button","button_delete");
                 break;
             case R.id.button_clear:
-                arithmeticTextView.setText(R.string.empty);
-                resultTextView.setText(R.string.empty);
                 statement = 0;
                 resultFlag = 0;
+                pointFlag = 0;
                 previousNum = 0;
                 lastNum = 0;
+                resultNum = 0;
+                arithmeticTextView.setText(R.string.empty);
+                resultTextView.setText(R.string.empty);
                 stringBuilder = new StringBuilder();
+                stringBuilderTV = new StringBuilder();
                 Log.i("Button","button_clear");
                 break;
             case R.id.button_equals:
+                /**
+                 * 如果還未計算出結果(resultFlag==0)，才可以使用按鍵;
+                 * 如果已計算出結果(resultFlag==1)，則禁止使用任何按鍵;
+                 */
                 if (resultFlag == 0) {
-                    if (statement == 0) {
-                        //沒事
-                    } else if (statement > 0) {
+                    //開啟禁止使用任何按鍵
+                    resultFlag = 1;
+                    try {
                         lastNum = Double.parseDouble(stringBuilder.toString());
-                        stringBuilder = new StringBuilder();
-                        resultFlag = 1;
-                        if (statement == 1) {
-                            /**
-                             * 加法
-                             */
-                            stringBuilder.append(previousNum + lastNum);
-                        } else if (statement == 2) {
-                            /**
-                             * 減法
-                             */
-                            stringBuilder.append(previousNum - lastNum);
-                        } else if (statement == 3) {
-                            /**
-                             * 乘法
-                             */
-                            stringBuilder.append(previousNum * lastNum);
-                        } else if (statement == 4) {
-                            /**
-                             * 除法
-                             */
-                            stringBuilder.append(previousNum / lastNum);
-                        } else {
-                            Toast.makeText(this, "button_equals例外狀況(加減乘除)", Toast.LENGTH_SHORT).show();
-                        }
-                        statement = 0;
-                        resultTextView.setText(stringBuilder);
-                    } else {
-                        Toast.makeText(this, "button_equals例外狀況(statement)", Toast.LENGTH_SHORT).show();
+                    } catch (Exception e) {
+                        //任何例外都將數字設為0
+                        lastNum = 0;
                     }
-                } else if (resultFlag == 1) {
-                    //沒事
-                } else {
-                    Toast.makeText(this, "button_equals例外狀況(resultFlag)", Toast.LENGTH_SHORT).show();
+                    if (statement == 4 && lastNum == 0) {
+                        ////顯示結果(除數不得為零)
+                        resultTextView.setText(R.string.not_zero);
+                    } else {
+                        if (statement == 1) {
+                            //加法
+                            resultNum = previousNum + lastNum;
+                        } else if (statement == 2) {
+                            //減法
+                            resultNum = previousNum - lastNum;
+                        } else if (statement == 3) {
+                            //乘法
+                            resultNum = previousNum * lastNum;
+                        } else if (statement == 4) {
+                            //除法
+                            resultNum = previousNum / lastNum;
+                        } else {
+                            //無任何運算式
+                            resultNum = previousNum + lastNum;
+                        }
+                        //顯示結果
+                        resultTextView.setText(String.valueOf(resultNum));
+                    }
                 }
                 Log.i("Button","button_equals");
                 break;
             case R.id.button_point:
-                if (resultFlag == 0) {
-                    stringBuilder.append(getResources().getText(R.string.point));
-                    arithmeticTextView.setText(stringBuilder);
-                } else if (resultFlag == 1) {
-                    //沒事
-                } else {
-                    Toast.makeText(this, "button_point例外狀況(resultFlag)", Toast.LENGTH_SHORT).show();
+                /**
+                 * 如果還未計算出結果(resultFlag==0)，才可以使用按鍵;
+                 * 如果已計算出結果(resultFlag==1)，則禁止使用任何按鍵;
+                 */
+                if (resultFlag == 0 ) {
+                    if (pointFlag == 0) {
+                        //停止使用小數點
+                        pointFlag = 1;
+                        stringBuilder.append(getResources().getText(R.string.point));
+                        stringBuilderTV.append(getResources().getText(R.string.point));
+                        arithmeticTextView.setText(stringBuilderTV);
+                    }
                 }
                 Log.i("Button","button_point");
                 break;
